@@ -143,33 +143,6 @@ plot_results(t, sol, p,
 
 # %%
 ######################################################
-################## Adipose tissues ###################
-print("INCOMMING: Adipose compartments")
-
-# Organs included in simulation:
-organs = ['Brain', 'Heart', 'Gut', 'Liver', 'Kidney', 'Muscle', 'Adipose upper', 'Adipose lower']
-
-# Time Details
-t_meals = [60*(0+0),  60*(0+5),  60*(0+10)]
-t_span = [0, 60*24*2]
-
-# Load parameters and solve differential equations:
-p = Parameters(organs)
-x0 = p.get_initial_values(G0, I0, Gamma0)
-p.efficiency_convertion()
-t, sol, solution = Model_solver(p, x0, t_span, meal, t_meals)
-
-# Display Results: Adipose
-plot_results(t, sol, p,
-            organ_s = ['Adipose upper', 'Adipose lower'],
-            metabolite_s = p.metabolites)
-plot_results(t[t<60*24], sol[:,t<60*24], p,
-            organ_s = ['Adipose upper', 'Adipose lower'],
-            metabolite_s = p.metabolites)
-
-
-# %%
-######################################################
 ############### Parameter estimation #################
 print("INCOMMING: Parameter estimation - comparison with data")
 
@@ -277,9 +250,9 @@ t_span = [0, 60*24]
 p = Parameters(organs)
 x0 = p.get_initial_values(G0, I0, Gamma0)
 p.efficiency_convertion()
-p.mu['Muscle'] *= 0.5        # Insulin resistance
-p.mu['Adipose upper'] *= 0.5 # Insulin resistance
-p.mu['Adipose lower'] *= 0.5 # Insulin resistance
+p.mu['Muscle'] *= 0.05        # Insulin resistance
+p.mu['Adipose upper'] *= 0.05 # Insulin resistance
+p.mu['Adipose lower'] *= 0.05 # Insulin resistance
 t, sol, solution = Model_solver(p, x0, t_span, meal, t_meals)
 
 # Display Results:
