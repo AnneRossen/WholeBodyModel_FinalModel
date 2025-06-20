@@ -46,7 +46,7 @@ meal = macro_daily_energy/3
 print("INCOMMING: GI submodel enhancement")
 
 # Organs included in simulation:
-organs = ['Brain', 'Heart', 'Gut', 'Liver', 'Kidney', 'Muscle', 'Adipose', 'Adipose lower']
+organs = ['Brain', 'Heart', 'Gut', 'Liver', 'Kidney', 'Muscle', 'Adipose']
 
 # Time Details
 t_meals = [0]
